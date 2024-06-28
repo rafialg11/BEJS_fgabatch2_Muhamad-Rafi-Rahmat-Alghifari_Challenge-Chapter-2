@@ -21,7 +21,7 @@ class BankingSystem{
             });
             return account.deposit(amount);    
         } catch (error) {
-            console.log(error);
+            window.alert(error);
         }
     }
     
@@ -34,7 +34,7 @@ class BankingSystem{
             });
             return account.withdraw(amount);    
         } catch (error) {
-            console.log(error);
+            window.alert(error);
         }
     }
 
@@ -47,7 +47,7 @@ class BankingSystem{
             })
             return account.getBalance();
         } catch (error){
-            console.log(error);
+            window.alert(error);
         }
     }
 }
