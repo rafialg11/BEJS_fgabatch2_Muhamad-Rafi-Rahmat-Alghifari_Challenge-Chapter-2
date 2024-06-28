@@ -8,7 +8,7 @@ class BankingSystem{
     createAccount(initialBalance = 0.0){        
         const newAccount = new BankAccount(initialBalance);
         this.accounts.push(newAccount);
-        console.log(`Account ${newAccount.getBalance()} created.`);
+        console.log(`Account created.`);
         return new BankAccount(0);
     }   
 
@@ -30,7 +30,7 @@ class BankingSystem{
             await new Promise ((resolve) => {
                 setTimeout(()=>{
                     resolve(true)
-                }, 1000);
+                }, 500);
             });
             return account.withdraw(amount);    
         } catch (error) {
@@ -43,7 +43,7 @@ class BankingSystem{
             await new Promise ((resolve) => {
                 setTimeout(()=>{
                     resolve(true)
-                }, 2000);
+                }, 200);
             })
             return account.getBalance();
         } catch (error){
@@ -61,15 +61,33 @@ const account1 = bankingSystem.createAccount(0);
 // Melakukan operasi perbankan dengan fungsi async
 (async () => {
   // Deposit ke akun
-  await bankingSystem.deposit(account1, 500);
-  console.log(`Deposit sebesar 500, total ${account1.getBalance()}.`);
+  let choice;
 
-  // Penarikan dari akun
-  await bankingSystem.withdraw(account1, 200);
-  console.log(`Penarikan sebesar 200, sisa ${account1.getBalance()}.`);
+  while (choice != "4"){ 
+    choice = window.prompt("Pilih operasi yang ingin dilakukan: \n1. Deposit \n2. Withdraw \n3. Check Balance \n4. Exit");
+    switch (choice) {
+            case "1":
+                const depositAmount = window.prompt("Masukkan nominal deposit: ");
+                await bankingSystem.deposit(account1, depositAmount);                           
+                break;  
+        
+            case "2":
+                const withdrawalAmount = window.prompt("Masukkan nominal withdraw: ");
+                await bankingSystem.withdraw(account1, withdrawalAmount);                
+                break;
+        
+            case "3":
+                const balance = await bankingSystem.getBalance(account1);
+                window.alert(`Saldo akun saat ini: ${balance}`);
+                break;
 
-  // Mengecek saldo akun
-  const balance = await bankingSystem.getBalance(account1);
-  console.log(`Saldo akun saat ini: ${balance}`);
+            case "4":
+                break;
+
+            default:
+                console.log("Inputan tidak valid");	
+                break;
+        }
+    }
 })();
 

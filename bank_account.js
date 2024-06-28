@@ -1,9 +1,9 @@
 class BankAccount{
   constructor(balance){    
-    this.balance = balance;
+    this._balance = balance;
   }
   getBalance(){
-    return this.balance;
+    return this._balance;
   }
 
   deposit(amount){
@@ -14,7 +14,7 @@ class BankAccount{
         throw new Error ("Inputan tidak valid");
       } else {
         amount = parseFloat(amount);
-        this.balance += amount;}
+        this._balance += amount;}
     } catch (error) {
         alert(error);    
     }    
@@ -22,13 +22,13 @@ class BankAccount{
 
   withdraw(amount){
     try {
-      if (amount > this.balance){
+      if (amount > this._balance){
         throw new Error ("Saldo tidak mencukupi");
       } else if(amount < 0 || isNaN(amount) || amount === ""){
         throw new Error ("Inputan tidak valid");
       } else {
         amount = parseFloat(amount);
-        this.balance -= amount;
+        this._balance -= amount;
       }
     } catch (error) {
       alert(error);
