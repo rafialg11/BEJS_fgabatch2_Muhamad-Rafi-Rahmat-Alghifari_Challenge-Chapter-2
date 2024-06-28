@@ -1,5 +1,5 @@
 class BankAccount{
-  constructor(balance){
+  constructor(balance){    
     this.balance = balance;
   }
   getBalance(){
@@ -36,3 +36,4 @@ class BankAccount{
   }
 }
 
+export default BankAccount
